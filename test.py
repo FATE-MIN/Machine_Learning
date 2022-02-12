@@ -19,9 +19,15 @@ class MyModel(tf.keras.Model):
         y = self.dense1(y)
         outputs = self.dense2(y)
         return outputs
-    
+
+		
 if __name__ == "__main__":
     model = MyModel()
-    model(x_train)
+    y_pred = model(x)
+    y_train = tf.one_hot(y_train, depth = 10)
     with tf.GradientTape() as tape:
-        loss = tf.keras.losses.
+        loss = tf.reduce_sum(tf.square(y_pred - y_train)) / x_train.shape[0]
+        tape.gradient(loss, model.variables)
+   optimizer = tf.optimizers.Adam(learning_rate=0.01)
+
+
