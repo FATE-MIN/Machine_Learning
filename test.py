@@ -26,5 +26,6 @@ if __name__ == "__main__":
     with tf.GradientTape() as tape:
         loss = tf.reduce_sum(tf.square(y_pred - y_train)) / x_train.shape[0]
         tape.gradient(loss, model.variables)
-    
+   optimizer = tf.optimizers.Adam(learning_rate=0.01)
+
 
