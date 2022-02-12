@@ -20,4 +20,8 @@ class MyModel(tf.keras.Model):
         outputs = self.dense2(y)
         return outputs
     
-
+if __name__ == "__main__":
+    model = MyModel()
+    model(x_train)
+    with tf.GradientTape() as tape:
+        loss = tf.keras.losses.
